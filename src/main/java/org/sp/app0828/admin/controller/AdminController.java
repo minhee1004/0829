@@ -8,14 +8,14 @@ import org.springframework.web.servlet.ModelAndView;
 //관리자 메인과 관련된 요청을 처리하는 하위 컨트롤러
 @Controller
 public class AdminController {
-
+	
 	//관리자모드 메인요청을 처리
 	@RequestMapping(value="/admin/main", method=RequestMethod.GET)
 	public ModelAndView getMain() {
-		//3단계:
+		//3단계: 
 		
-		ModelAndView mav = new ModelAndView();
-		//4단계:
+		ModelAndView mav = new ModelAndView(); 
+		//4단계: 
 		mav.setViewName("admin/index");
 		
 		return mav;

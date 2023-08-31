@@ -10,15 +10,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class BoardController{
 	
-	//게시판 목록 요청을 처리할 메서드
+	//게시판 목록 요청을 처리할 메서드 
 	@RequestMapping(value="/board/list", method=RequestMethod.GET)
 	public ModelAndView getList() {
-		//3단계)
+		//3단계) 
 		System.out.println("게시물 목록 요청 받음");
 		
-		//4단계)
+		//4단계) 
 		//개발자는 스프링에서 request 객체를 직접 다루지 않는다. 즉 저장할 것이 있을경우
-		//ModelAndView 객체의 Model 영역에 데이터를 채울 수 있다 (내부적으로는 
+		//ModelAndView 객체의 Model 영역에 데이터를 채울 수 있다..(내부적으로는 
 		//request객체 이용)
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", "나의 스프링 테스트");
@@ -26,29 +26,5 @@ public class BoardController{
 		
 		return mav;
 	}
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

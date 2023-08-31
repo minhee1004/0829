@@ -8,5 +8,4 @@
 		and admin_pass=#{admin_pass}
 	</select>
 
-
 </mapper>

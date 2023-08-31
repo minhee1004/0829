@@ -15,9 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 	
-	//이 객체의 인스턴스는 개발자가 직접 생성하지 않는다
-	//왜? 스프링을 지배하는 원리 중  DI 적용을 위해
-	// DI (Dependency Injection)
+	//이 객체의 인스턴스는 개발자가 직접 생성하지 않는다.. 
+	//왜?? 스프링을 지배하는 원리 중 DI 적용을 위해.... 
+	//DI (Dependency Injection)
 	@Autowired
 	private AdminDAO adminDAO;
 	
@@ -25,56 +25,37 @@ public class LoginController {
 		this.adminDAO = adminDAO;
 	}
 	
-	
-	//로그인 폼 요청 처리
+	//로그인 폼 요청 처리 
 	@RequestMapping(value="/admin/loginform", method=RequestMethod.GET)
 	public ModelAndView getForm() {
-		//3단계: 생략 (업무없음)
-		//4단계: 페이지명 등록
+		//3단계: 생략  (업무없다) 
+		//4단계: 페이지명 등록 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/loginform");
-		
 		return mav;
 	}
 	
-	//로그인 요청 처리
+	//로그인 요청 처리 
 	@RequestMapping(value="/admin/login", method=RequestMethod.POST)
 	public ModelAndView login(Admin admin, HttpServletRequest request) {
-		//3단계: 로직객체에 일 시킨다
+		//3단계: 로직객체에 일 시킨다...
 		System.out.println("로그인요청함");
-		Admin obj=adminDAO.login(admin); //로그인 검증처리..
-			
-		ModelAndView mav= new ModelAndView();
-		//obj가 null 이면 로그인정보가 실패
-		if(obj==null) {
-			mav.addObject("msg","로그인 정보가 올바르지 않습니다" );
-			mav.setViewName("error/result"); 
-		}else {
-			//obj가 채워져 있다면, 로그인 성공, 세션에 DTO 담기
-			HttpSession session=request.getSession();//이 요청과 관련된 세션 얻기
-			session.setAttribute("admin", obj);
-			mav.setViewName("admin/index"); //성공하면 관리자 메인페이지
-		}
+		Admin obj=adminDAO.login(admin); //로그인 검증처리...
 		
+		ModelAndView mav = new ModelAndView();
+		
+		//obj 가  null 이면 로그인정보가 실패 
+		if(obj==null) {
+			mav.addObject("msg", "로그인 정보가 올바르지 않습니다");
+			mav.setViewName("error/result");
+		}else {
+			//obj 가 채워져 있다면, 로그인 성공, 세션에 DTO 담기
+			HttpSession session=request.getSession();//이 요청과 관련된 세션 얻기 
+			session.setAttribute("admin", obj);
+			mav.setViewName("admin/index");//성공하면 관리자 메인페이지
+		}
 		
 		return mav;
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
